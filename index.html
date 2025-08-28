@@ -163,7 +163,8 @@ iframe {
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 768px) {
     .logo img {
-        height: 120px;
+        max-width: 150px;  /* ✅ se adapta sin deformarse */
+        height: auto;
     }
     .descripcion h1 {
         font-size: 26px;
@@ -182,12 +183,12 @@ iframe {
         height: 60px;
     }
 
-    /* ✅ Ajuste del hero en móvil */
+    /* Ajuste de imagen principal en móvil */
     .hero-img {
         width: 100%;
-        height: 250px;           /* Fijas una altura visible */
-        object-fit: cover;       /* Recorta en vez de deformar */
-        object-position: center; /* Centra el recorte */
+        height: 250px;
+        object-fit: cover;
+        object-position: center;
     }
 }
 
@@ -298,6 +299,7 @@ function calcular(tipo) {
 
 </body>
 </html>
+
 
 
 
