@@ -4,6 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DaniPollo</title>
+
+<!-- ==================== FAVICON ==================== -->
 <link rel="icon" href="faviconPollo.jpg" type="image/x-icon">
 
 <style>
@@ -55,14 +57,57 @@ header {
     cursor: pointer;
 }
 .btn-whatsapp:hover {
-    background-color: #1daa61;
+    background-color: #1da955;
 }
 
-/* ==================== MODAL PEDIDO ==================== */
+/* ==================== SECCIÓN DESCRIPCIÓN ==================== */
+.descripcion {
+    padding: 20px;
+    max-width: 900px;
+    margin: auto;
+    font-size: 22px;
+    line-height: 1.6;
+}
+.descripcion h1 {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+/* ==================== GALERÍA ==================== */
+.galeria {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+.galeria img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* ==================== BOTONES ==================== */
+.btn {
+    background: #1daa61;
+    color: white;
+    padding: 12px 20px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px auto;
+    display: inline-block;
+    transition: background 0.3s;
+}
+.btn:hover {
+    background: #eec393;
+}
+
+/* ==================== MODAL ==================== */
 .modal {
     display: none;
     position: fixed;
-    z-index: 2000;
+    z-index: 1000;
     left: 0; top: 0;
     width: 100%; height: 100%;
     background: rgba(0,0,0,0.6);
@@ -72,46 +117,57 @@ header {
 .modal-content {
     background: white;
     padding: 20px;
-    border-radius: 15px;
+    border-radius: 10px;
     max-width: 400px;
     width: 90%;
     text-align: left;
-}
-.modal-content h2 {
-    margin-top: 0;
-}
-.modal-content label {
-    font-weight: bold;
-    display: block;
-    margin-top: 10px;
-}
-.modal-content input, 
-.modal-content textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-}
-.modal-content button {
-    background: #25D366;
-    color: white;
-    font-size: 16px;
-    padding: 12px;
-    margin-top: 15px;
-    width: 100%;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-}
-.modal-content button:hover {
-    background: #1daa61;
 }
 .close {
     float: right;
     font-size: 24px;
     cursor: pointer;
-    color: #333;
+}
+.modal-content h2 {
+    margin-top: 0;
+}
+.modal-content input, .modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+.modal-content button {
+    width: 100%;
+    background: #25D366;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+.modal-content button:hover {
+    background: #1da955;
+}
+
+/* ==================== VIDEO ==================== */
+.video {
+    padding: 20px;
+}
+.video iframe {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    border-radius: 10px;
+}
+
+/* ==================== MAPA ==================== */
+iframe {
+    border: none;
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
 }
 
 /* ==================== FOOTER ==================== */
@@ -121,6 +177,15 @@ header {
     padding: 30px 15px;
     margin-top: 40px;
 }
+.footer-content {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+.footer-logo {
+    height: 80px;
+    margin-bottom: 10px;
+}
 .footer a {
     color: #fff;
     text-decoration: none;
@@ -129,11 +194,38 @@ header {
 .footer a:hover {
     text-decoration: underline;
 }
+.footer-copy {
+    margin-top: 20px;
+    font-size: 14px;
+    opacity: 0.8;
+}
 
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 768px) {
-    .logo img { max-height: 120px; }
-    .hero-img { height: 250px; object-fit: cover; object-position: center; }
+    .logo img {
+        max-height: 120px;
+    }
+    .descripcion h1 {
+        font-size: 26px;
+    }
+    .descripcion {
+        font-size: 18px;
+    }
+    .btn {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+    .video iframe {
+        height: 220px;
+    }
+    .footer-logo {
+        height: 60px;
+    }
+    .hero-img {
+        height: 250px;
+        object-fit: cover;
+        object-position: center;
+    }
 }
 </style>
 </head>
@@ -147,54 +239,88 @@ header {
     </div>
 </header>
 
-<!-- ==================== BOTÓN WHATSAPP CON MODAL ==================== -->
-<button class="btn-whatsapp" onclick="abrirModal()">📲 Haz tu pedido aquí</button>
+<!-- ==================== BOTÓN QUE ABRE EL FORMULARIO ==================== -->
+<button class="btn-whatsapp" onclick="document.getElementById('pedidoModal').style.display='flex'">
+    📲 Haz tu pedido aquí
+</button>
 
-<!-- ==================== MODAL PEDIDO ==================== -->
+<!-- ==================== MODAL FORMULARIO PEDIDO ==================== -->
 <div id="pedidoModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="cerrarModal()">&times;</span>
-        <h2>Haz tu pedido 🐔</h2>
-        <form id="pedidoForm">
-            <label>Nombre:</label>
-            <input type="text" id="nombre" required>
-            
-            <label>Pedido:</label>
-            <textarea id="pedido" rows="3" required></textarea>
-            
-            <label>Dirección:</label>
-            <textarea id="direccion" rows="2" required></textarea>
-            
-            <button type="submit">Enviar a WhatsApp</button>
-        </form>
-    </div>
+  <div class="modal-content">
+    <span class="close" onclick="document.getElementById('pedidoModal').style.display='none'">&times;</span>
+    <h2>Haz tu pedido</h2>
+    <form id="pedidoForm">
+      <input type="text" id="nombre" placeholder="Tu nombre" required>
+      <textarea id="pedido" placeholder="¿Qué deseas pedir?" required></textarea>
+      <input type="text" id="direccion" placeholder="Tu dirección" required>
+      <button type="submit">Enviar a WhatsApp</button>
+    </form>
+  </div>
 </div>
+
+<!-- ==================== DESCRIPCIÓN ==================== -->
+<section class="descripcion">
+    <h1>Pollo Más Fresco No Se Puede</h1>
+    <p>Pollo fresco seleccionado de los mejores criaderos, sin químicos y con despachos rápidos a domicilio.</p>
+</section>
+
+<!-- ==================== GALERÍA ==================== -->
+<section class="galeria">
+    <img src="Poollo.jpg" alt="Imagen 1">
+    <img src="poolo1.jpg" alt="Imagen 2">
+    <img src="Pierna pernil.jpg" alt="Imagen 3">
+</section>
+
+<!-- ==================== BOTONES EXTRAS ==================== -->
+<div>
+    <a href="https://wa.me/573115738914?text=Hola%20daniel%20quiero%20pedir" target="_blank" class="btn">
+        Comprar
+    </a>
+    <a href="https://wa.me/573133403656?text=Hola%20quiero%20más%20información" target="_blank" class="btn">
+        Más información
+    </a>
+    <button class="btn" onclick="document.getElementById('mapa').scrollIntoView({behavior: 'smooth'})">Cómo llegar</button>
+</div>
+
+<!-- ==================== VIDEO ==================== -->
+<section class="video">
+    <h2>Mira cómo trabajamos</h2>
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Video DaniPollo" allowfullscreen></iframe>
+</section>
+
+<!-- ==================== GOOGLE MAPS ==================== -->
+<section id="mapa" style="padding: 20px;">
+    <h2>Visítanos</h2>
+    <iframe src="https://www.google.com/maps/dir//4.8743369,-74.143906/@4.8743369,-74.1464809,17z?hl=es" allowfullscreen></iframe>
+</section>
 
 <!-- ==================== FOOTER ==================== -->
 <footer class="footer">
-    <p>📍 Chía, Bogotá, Colombia</p>
-    <p>📞 <a href="tel:+573115738914">+57 311 573 8914</a></p>
-    <p>📱 <a href="https://wa.me/573115738914" target="_blank">WhatsApp</a></p>
-    <p>© 2025 DaniPollo</p>
+    <div class="footer-content">
+        <img src="logodaniel-removebg-preview.png" alt="Logo DaniPollo" class="footer-logo">
+        <p><strong>DaniPollo</strong></p>
+        <p>📍 Dirección: Chia, Bogotá, Colombia</p>
+        <p>📞 Tel: <a href="tel:+573115738914">+57 311 573 8914</a></p>
+        <p>📱 WhatsApp: 
+            <a href="https://wa.me/573115738914?text=Hola%20DaniPollo%20quiero%20hacer%20un%20pedido" target="_blank">
+                +57 311 573 8914
+            </a>
+        </p>
+    </div>
+    <div class="footer-copy">
+        <p>© 2025 DaniPollo - Todos los derechos reservados</p>
+    </div>
 </footer>
 
+<!-- ==================== SCRIPT PARA ENVIAR PEDIDO ==================== -->
 <script>
-// === FUNCIONES MODAL ===
-function abrirModal() {
-    document.getElementById("pedidoModal").style.display = "flex";
-}
-function cerrarModal() {
-    document.getElementById("pedidoModal").style.display = "none";
-}
-
-// === ENVIAR PEDIDO A WHATSAPP ===
 document.getElementById("pedidoForm").addEventListener("submit", function(e) {
     e.preventDefault();
     let nombre = document.getElementById("nombre").value;
     let pedido = document.getElementById("pedido").value;
     let direccion = document.getElementById("direccion").value;
 
-    let mensaje = `Hola DaniPollo, soy ${nombre}. Quiero pedir:\n${pedido}\n📍 Dirección: ${direccion}`;
+    let mensaje = `Hola DaniPollo, soy ${nombre}. Quiero pedir: ${pedido}. Mi dirección es: ${direccion}.`;
     let url = `https://wa.me/573115738914?text=${encodeURIComponent(mensaje)}`;
 
     window.open(url, "_blank");
