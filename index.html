@@ -27,22 +27,38 @@ header {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 0;
-    border-radius: 0;
-    box-shadow: none;
 }
 .logo img {
-    height: 180px; /* Ajusta según necesites */
-    max-width: 100%;
+    max-height: 180px;  /* ✅ mantiene proporción sin deformar */
+    width: auto;
 }
 
 /* ==================== IMAGEN PRINCIPAL ==================== */
 .hero-img {
     width: 100%;
-    height: 80vh; /* Ajusta la altura: 80% de la pantalla */
-    object-fit: cover; /* ✅ Evita distorsión y mantiene proporción */
+    height: 80vh;
+    object-fit: cover;
     display: block;
 }
+
+/* ==================== BOTÓN WHATSAPP ==================== */
+.btn-whatsapp {
+    display: inline-block;
+    background-color: #25D366;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 25px;
+    border-radius: 50px;
+    text-decoration: none;
+    margin-top: 20px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+    transition: background 0.3s;
+}
+.btn-whatsapp:hover {
+    background-color: #1eb346;
+}
+
 /* ==================== SECCIÓN DESCRIPCIÓN ==================== */
 .descripcion {
     padding: 20px;
@@ -147,7 +163,7 @@ iframe {
     margin-bottom: 10px;
 }
 .footer a {
-    color: #white;
+    color: #fff;
     text-decoration: none;
     font-weight: bold;
 }
@@ -163,8 +179,7 @@ iframe {
 /* ==================== RESPONSIVE ==================== */
 @media (max-width: 768px) {
     .logo img {
-        max-width: 150px;  /* ✅ se adapta sin deformarse */
-        height: auto;
+        max-height: 120px;
     }
     .descripcion h1 {
         font-size: 26px;
@@ -182,16 +197,12 @@ iframe {
     .footer-logo {
         height: 60px;
     }
-
-    /* Ajuste de imagen principal en móvil */
     .hero-img {
-        width: 100%;
         height: 250px;
         object-fit: cover;
         object-position: center;
     }
 }
-
 </style>
 </head>
 <body>
@@ -200,9 +211,13 @@ iframe {
 <header>
     <img src="Pollitos.jpg" alt="Imagen principal" class="hero-img">
     <div class="logo">
-        <img src="logodaniel-removebg-preview.png" alt="Logo">
+        <img src="logodaniel-removebg-preview.png" alt="Logo DaniPollo">
     </div>
 </header>
+
+<!-- ==================== BOTÓN WHATSAPP DESTACADO ==================== -->
+<a href="https://wa.me/573115738914?text=Hola%20DaniPollo%20quiero%20hacer%20un%20pedido" 
+   target="_blank" class="btn-whatsapp">📲 Hacer Pedido por WhatsApp</a>
 
 <!-- ==================== DESCRIPCIÓN ==================== -->
 <section class="descripcion">
@@ -217,9 +232,7 @@ iframe {
     <img src="Pierna pernil.jpg" alt="Imagen 3">
 </section>
 
-<!-- ==================== BOTONES ==================== -->
-<button class="btn" onclick="abrirModal()">Haz tu Pedido</button>
-
+<!-- ==================== BOTONES EXTRAS ==================== -->
 <div>
     <a href="https://wa.me/573115738914?text=Hola%20daniel%20quiero%20pedir" target="_blank" class="btn">
         Comprar
@@ -228,19 +241,6 @@ iframe {
         Más información
     </a>
     <button class="btn" onclick="document.getElementById('mapa').scrollIntoView({behavior: 'smooth'})">Cómo llegar</button>
-</div>
-
-<!-- ==================== MODAL ==================== -->
-<div class="modal" id="modal">
-    <div class="modal-content">
-        <span class="close" onclick="cerrarModal()">&times;</span>
-        <h2>Haz tu presupuesto</h2>
-        <label>Kilos/Libras:</label>
-        <input type="number" id="metros" placeholder="Ej: 5" style="width: 100%; padding: 8px;">
-        <button onclick="calcular('bloquelon')" class="btn">Calcular en Bloquelón</button>
-        <button onclick="calcular('plaqueta')" class="btn">Calcular en Plaqueta</button>
-        <p id="resultado"></p>
-    </div>
 </div>
 
 <!-- ==================== VIDEO ==================== -->
@@ -273,36 +273,5 @@ iframe {
     </div>
 </footer>
 
-<!-- ==================== JAVASCRIPT ==================== -->
-<script>
-function abrirModal() {
-    document.getElementById('modal').style.display = 'flex';
-}
-function cerrarModal() {
-    document.getElementById('modal').style.display = 'none';
-}
-function calcular(tipo) {
-    let metros = document.getElementById('metros').value;
-    if (!metros) {
-        document.getElementById('resultado').innerText = "Por favor ingrese el peso en kilos.";
-        return;
-    }
-    let precio;
-    if (tipo === 'bloquelon') {
-        precio = metros * 15000;
-    } else {
-        precio = metros * 17000;
-    }
-    document.getElementById('resultado').innerText = "Precio estimado: $" + precio.toLocaleString();
-}
-</script>
-
 </body>
 </html>
-
-
-
-
-
-
-
