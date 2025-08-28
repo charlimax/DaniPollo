@@ -94,3 +94,199 @@ header {
     z-index: 1000;
     left: 0; top: 0;
     width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6);
+    justify-content: center;
+    align-items: center;
+}
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    width: 90%;
+    text-align: left;
+}
+.close {
+    float: right;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* ==================== VIDEO ==================== */
+.video {
+    padding: 20px;
+}
+.video iframe {
+    width: 100%;
+    max-width: 800px;
+    height: 400px;
+    border-radius: 10px;
+}
+
+/* ==================== MAPA ==================== */
+iframe {
+    border: none;
+    width: 100%;
+    height: 300px;
+    border-radius: 10px;
+}
+
+/* ==================== FOOTER ==================== */
+.footer {
+    background: #1daa61;
+    color: white;
+    padding: 30px 15px;
+    margin-top: 40px;
+}
+.footer-content {
+    max-width: 900px;
+    margin: auto;
+    text-align: center;
+}
+.footer-logo {
+    height: 80px;
+    margin-bottom: 10px;
+}
+.footer a {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: bold;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+.footer-copy {
+    margin-top: 20px;
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+/* ==================== RESPONSIVE ==================== */
+@media (max-width: 768px) {
+    .logo img {
+        height: 120px;
+    }
+    .descripcion h1 {
+        font-size: 26px;
+    }
+    .descripcion {
+        font-size: 18px;
+    }
+    .btn {
+        font-size: 16px;
+        padding: 10px 15px;
+    }
+    .video iframe {
+        height: 220px;
+    }
+    .footer-logo {
+        height: 60px;
+    }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================== IMAGEN PRINCIPAL CON LOGO ==================== -->
+<header>
+    <img src="Pollitos.jpg" alt="Imagen principal" class="hero-img">
+    <div class="logo">
+        <img src="logodaniel-removebg-preview.png" alt="Logo">
+    </div>
+</header>
+
+<!-- ==================== DESCRIPCIÓN ==================== -->
+<section class="descripcion">
+    <h1>Pollo Más Fresco No Se Puede</h1>
+    <p>Pollo fresco seleccionado de los mejores criaderos, sin químicos y con despachos rápidos a domicilio.</p>
+</section>
+
+<!-- ==================== GALERÍA ==================== -->
+<section class="galeria">
+    <img src="Poollo.jpg" alt="Imagen 1">
+    <img src="poolo1.jpg" alt="Imagen 2">
+    <img src="Pierna pernil.jpg" alt="Imagen 3">
+</section>
+
+<!-- ==================== BOTONES ==================== -->
+<button class="btn" onclick="abrirModal()">Haz tu Pedido</button>
+
+<div>
+    <a href="https://wa.me/573115738914?text=Hola%20daniel%20quiero%20pedir" target="_blank" class="btn">
+        Comprar
+    </a>
+    <a href="https://wa.me/573133403656?text=Hola%20quiero%20más%20información" target="_blank" class="btn">
+        Más información
+    </a>
+    <button class="btn" onclick="document.getElementById('mapa').scrollIntoView({behavior: 'smooth'})">Cómo llegar</button>
+</div>
+
+<!-- ==================== MODAL ==================== -->
+<div class="modal" id="modal">
+    <div class="modal-content">
+        <span class="close" onclick="cerrarModal()">&times;</span>
+        <h2>Haz tu presupuesto</h2>
+        <label>Kilos/Libras:</label>
+        <input type="number" id="metros" placeholder="Ej: 5" style="width: 100%; padding: 8px;">
+        <button onclick="calcular('bloquelon')" class="btn">Calcular en Bloquelón</button>
+        <button onclick="calcular('plaqueta')" class="btn">Calcular en Plaqueta</button>
+        <p id="resultado"></p>
+    </div>
+</div>
+
+<!-- ==================== VIDEO ==================== -->
+<section class="video">
+    <h2>Mira cómo trabajamos</h2>
+    <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Video DaniPollo" allowfullscreen></iframe>
+</section>
+
+<!-- ==================== GOOGLE MAPS ==================== -->
+<section id="mapa" style="padding: 20px;">
+    <h2>Visítanos</h2>
+    <iframe src="https://www.google.com/maps/dir//4.8743369,-74.143906/@4.8743369,-74.1464809,17z?hl=es" allowfullscreen></iframe>
+</section>
+
+<!-- ==================== FOOTER ==================== -->
+<footer class="footer">
+    <div class="footer-content">
+        <img src="logodaniel-removebg-preview.png" alt="Logo DaniPollo" class="footer-logo">
+        <p><strong>DaniPollo</strong></p>
+        <p>📍 Dirección: Calle 123 #45-67, Bogotá, Colombia</p>
+        <p>📞 Tel: <a href="tel:+573115738914">+57 311 573 8914</a></p>
+        <p>📱 WhatsApp: 
+            <a href="https://wa.me/573115738914?text=Hola%20DaniPollo%20quiero%20hacer%20un%20pedido" target="_blank">
+                +57 311 573 8914
+            </a>
+        </p>
+    </div>
+    <div class="footer-copy">
+        <p>© 2025 DaniPollo - Todos los derechos reservados</p>
+    </div>
+</footer>
+
+<!-- ==================== JAVASCRIPT ==================== -->
+<script>
+function abrirModal() {
+    document.getElementById('modal').style.display = 'flex';
+}
+function cerrarModal() {
+    document.getElementById('modal').style.display = 'none';
+}
+function calcular(tipo) {
+    let metros = document.getElementById('metros').value;
+    if (!metros) {
+        document.getElementById('resultado').innerText = "Por favor ingrese el peso en kilos.";
+        return;
+    }
+    let precio;
+    if (tipo === 'bloquelon') {
+        precio = metros * 15000;
+    } else {
+        precio = metros * 17000;
+    }
+    document.getElementById('resultado').innerText = "Precio estimado: $" + precio.toLocaleString();
+}
+</script>
+
+</body>
+</html>
