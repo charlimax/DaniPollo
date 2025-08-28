@@ -223,9 +223,12 @@ iframe {
     opacity: 0.9;
 }
 /* ==================== RESPONSIVE ==================== */
+/* ==================== RESPONSIVE ==================== */
 @media (max-width: 768px) {
     .logo img {
-        max-height: 120px;
+        max-height: 80px;  /* antes estaba en 120px */
+        width: auto;
+        height: auto;
     }
     .descripcion h1 {
         font-size: 26px;
@@ -244,11 +247,12 @@ iframe {
         height: 60px;
     }
     .hero-img {
-        height: 150px;
+        height: 200px; /* un poco más grande que los 150px para que respire */
         object-fit: cover;
         object-position: center;
     }
 }
+
 </style>
 </head>
 <body>
@@ -352,6 +356,7 @@ document.getElementById("pedidoForm").addEventListener("submit", function(e) {
 
 </body>
 </html>
+
 
 
 
