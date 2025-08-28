@@ -181,7 +181,16 @@ iframe {
     .footer-logo {
         height: 60px;
     }
+
+    /* ✅ Ajuste del hero en móvil */
+    .hero-img {
+        width: 100%;
+        height: 250px;           /* Fijas una altura visible */
+        object-fit: cover;       /* Recorta en vez de deformar */
+        object-position: center; /* Centra el recorte */
+    }
 }
+
 </style>
 </head>
 <body>
@@ -289,6 +298,7 @@ function calcular(tipo) {
 
 </body>
 </html>
+
 
 
 
